@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
+import PrimaryButton from "./components/PrimaryButton";
 
 export default function App() {
 	const [todo, SetTodo] = useState("");
@@ -20,15 +21,26 @@ export default function App() {
 		todo ? setTodoList((todoList) => [...todoList, todo]) : "";
 		SetTodo("");
 	};
+	const onEdit = () => {
+		console.log("edit");
+	};
+	const onDelete = () => {
+		console.log("delete");
+	};
+
 	const renderFatList = (
 		<FlatList
 			data={todoList}
 			renderItem={(itemData) => {
 				return (
 					<View style={styles.todoList}>
-						<Text style={{ width: "70%" }}>{itemData.item}</Text>
-						<Button title="Del" />
-						<Button title="Edit" />
+						<Text style={{ width: "64%" }}>{itemData.item}</Text>
+						<PrimaryButton onPress={onEdit} backColor={"blue"}>
+							Edit
+						</PrimaryButton>
+						<PrimaryButton onPress={onDelete} backColor={"red"}>
+							Del
+						</PrimaryButton>
 					</View>
 				);
 			}}
