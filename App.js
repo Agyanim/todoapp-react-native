@@ -1,25 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import {
-	Button,
 	FlatList,
-	ScrollView,
 	Text,
-	TextInput,
 	View,
 } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
 import PrimaryButton from "./components/PrimaryButton";
+import InputComponent from "./components/InputComponent";
 
 export default function App() {
-	const [todo, SetTodo] = useState("");
 	const [todoList, setTodoList] = useState([]);
-	const onChangeHandler = (text) => {
-		SetTodo(text);
-	};
-	const onPressHandler = () => {
+	const onPressHandler = (todo) => {
 		todo ? setTodoList((todoList) => [...todoList, todo]) : "";
-		SetTodo("");
 	};
 	const onEdit = () => {
 		console.log("edit");
@@ -60,19 +53,10 @@ export default function App() {
 
 	return (
 		// main container
-		<View style={styles.container}>
-			{/* input container */}
-			<View style={styles.textInputWrapper}>
-				<TextInput
-					style={styles.todoText}
-					placeholder="Enter todos here"
-					onChangeText={onChangeHandler}
-					value={todo}
-				/>
-				<Button title="Submit" onPress={onPressHandler} />
-			</View>
+		<>
+			<InputComponent onPressHandler={onPressHandler} />
 			<View style={styles.displayText}>{renderFatList}</View>
 			<StatusBar style="auto" />
-		</View>
+		</>
 	);
 }
