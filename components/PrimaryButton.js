@@ -1,14 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
-const PrimaryButton = ({ children, backColor, onPress ,}) => {
+const PrimaryButton = ({ children, backColor, onPress }) => {
 	return (
-		<View style={{ backgroundColor: backColor, borderRadius: 5 }}>
-            
+		<View>
 			<Pressable
-				android_ripple={{ color: "green"}}
+				android_ripple={{ color: "green" }}
 				onPress={onPress}
-				style={{ backgroundColor: backColor }}
+				style={{ backgroundColor: backColor, borderRadius: 5 }}
 			>
 				<Text style={styles.buttonText}>{children.toUpperCase()}</Text>
 			</Pressable>
@@ -25,4 +23,5 @@ const styles = StyleSheet.create({
 		paddingVertical: 10,
 		fontWeight: "bold",
 	},
+	
 });
